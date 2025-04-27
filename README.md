@@ -1,6 +1,3 @@
-Absolutely — here’s the modified version of your full README.md, incorporating the corrected detailed folder structure from your screenshot! 🎯
-I kept everything else as you wrote, just improved the folder structure part to fully match your solution.
-________________________________________
 School API - GraphQL .NET Solution
 Welcome to the School API — a GraphQL-based .NET Core project that manages course data, user authentication, and authorization.
 This solution uses a clean architecture approach with Repository Pattern, JWT Authentication, GraphQL (HotChocolate), DataLoaders, and FluentValidation integration.
