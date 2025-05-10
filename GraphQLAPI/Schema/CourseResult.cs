@@ -9,6 +9,6 @@ namespace School.API.Schema
         public Subject Subject { get; set; }
         public Guid InstructorId { get; set; }
 
-        public string CreatedBy { get; set; } // Add this field to track who created it
+        public string CreatedBy { get; set; }
     }
 }

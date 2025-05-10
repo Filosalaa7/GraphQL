@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using School.Core.DTOs;
-using HotChocolate;
 using School.Infrastructure;
 using School.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using HotChocolate.Authorization;
+using Microsoft.AspNetCore.Authorization;
+
 
 
 namespace School.API.Schema
@@ -21,7 +21,7 @@ namespace School.API.Schema
         }
 
 
-        //[Authorize]
+        [Authorize(Roles = "User")]
         [UseOffsetPaging(IncludeTotalCount = true, DefaultPageSize = 10)]
         [UseProjection]
         [UseFiltering]
@@ -35,7 +35,8 @@ namespace School.API.Schema
             return mapper.ProjectTo<CourseType>(courseDtos); 
         }
 
-        //note that it retrieves all data
+
+        [Authorize(Roles = "User")]
         [UsePaging(IncludeTotalCount = true, DefaultPageSize = 10)]
         [UseSorting]
         public async Task<IEnumerable<CourseType>> GetAllCourses()
@@ -44,6 +45,7 @@ namespace School.API.Schema
             return _mapper.Map<IEnumerable<CourseType>>(courseDtos);
         }
 
+        [Authorize(Roles = "User")]
         public async Task<CourseType> GetCourseById(Guid id)
         {
             var courseDto = await _coursesRepository.GetById(id);

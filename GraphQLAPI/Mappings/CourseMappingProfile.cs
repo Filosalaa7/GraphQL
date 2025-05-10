@@ -8,16 +8,14 @@ namespace School.API.Mappings
     {
         public CourseMappingProfile()
         {
-            // Main mapping
             CreateMap<CourseDTO, CourseType>();
-            CreateMap<CourseType, CourseDTO>(); // Reverse mapping
+            CreateMap<CourseType, CourseDTO>();
 
-            // Optionally nested mappings if needed
             CreateMap<InstructorDTO, InstructorType>();
-            CreateMap<InstructorType,InstructorDTO>(); //Reverse mapping
+            CreateMap<InstructorType,InstructorDTO>();
 
             CreateMap<StudentDTO, StudentType>();
-            CreateMap<StudentType,StudentDTO>(); //Reverse mapping
+            CreateMap<StudentType,StudentDTO>(); 
         }
     }
 }

@@ -36,7 +36,7 @@ namespace School.API.Schema
                 Name = courseInput.Name,
                 Subject = courseInput.Subject,
                 InstructorId = courseInput.InstructorId,
-                CreatedBy = userId // Add this field to track who created it
+                CreatedBy = userId 
             };
 
             CourseDTO createdCourse = await _coursesRepository.Create(course);
@@ -47,7 +47,7 @@ namespace School.API.Schema
                 Name = createdCourse.Name,
                 Subject = createdCourse.Subject,
                 InstructorId = createdCourse.InstructorId,
-                CreatedBy = createdCourse.CreatedBy // Add this field to track who created it
+                CreatedBy = createdCourse.CreatedBy 
             };
         }
 
