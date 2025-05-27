@@ -4,6 +4,7 @@ using School.Infrastructure;
 using School.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using School.Core.Models;
 
 
 
@@ -13,12 +14,21 @@ namespace School.API.Schema
     {
         private readonly CoursesRepository _coursesRepository;
         private readonly IMapper _mapper;
+        private readonly HttpClient _httpClient;
 
-        public Queries(CoursesRepository coursesRepository, IMapper mapper)
+        public Queries(CoursesRepository coursesRepository, IMapper mapper, IHttpClientFactory factory)
         {
             _coursesRepository = coursesRepository;
             _mapper = mapper;
+            _httpClient = factory.CreateClient("GrpcJson");
         }
+
+        public async Task<IEnumerable<ToDoItem>> GetAllGrpc()
+        {
+            var response = await _httpClient.GetFromJsonAsync<ToDoResponse>("/v1/todo");
+            return response?.ToDo;
+        }
+
 
 
         [Authorize(Roles = "User")]

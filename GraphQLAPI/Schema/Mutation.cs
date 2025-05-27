@@ -95,7 +95,7 @@ namespace School.API.Schema
             => await _authService.GetTokenAsync(input);
 
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<string> AddRole(AddRoleModel input)
             => await _authService.AddRoleAsync(input);
 

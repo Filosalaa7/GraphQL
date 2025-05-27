@@ -24,6 +24,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddGraphQLServer()
     .AddAuthorization()
     .AddQueryType<Queries>()
+    //.AddQueryType<GrpcQueries>()
     .AddMutationType<Mutation>()
     .AddDataLoader<InstructorDataLoader>()
     .AddFiltering()
@@ -33,6 +34,7 @@ builder.Services.AddGraphQLServer()
     {
         o.UseDefaultErrorMapper();
     });
+
 
 
 builder.Services.AddDbContextFactory<SchoolDbContext>(options =>
@@ -80,6 +82,10 @@ builder.Services.AddScoped<InstructorRepository>();
 
 builder.Services.AddAutoMapper(typeof(CourseMappingProfile));
 
+builder.Services.AddHttpClient("GrpcJson", client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7115"); // gRPC server
+});
 
 
 
